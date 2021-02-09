@@ -1,4 +1,6 @@
 
+
+
 <div style="width: 50%;" class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;" [hidden]="bandera">
     <mat-divider></mat-divider>
 <table mat-table [dataSource]="table" class="mat-elevation-z8" style="width: 100%; ">
@@ -53,6 +55,16 @@
       </span>
 
       </button>
+
+      &nbsp;
+      <button mat-raised-button (click)="crear()"  style="color:aliceblue; background-color:#5f0be6; text-align: center;">
+        
+        <span class="material-icons">
+          add_circle_outline
+          </span>
+
+       </button>
+      
   </td>
 </ng-container>
 
@@ -60,36 +72,44 @@
 <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
 </table> 
 
-<div style="align-items: center;">
 
-<button mat-raised-button (click)="crear()"  style="color:aliceblue; background-color:#5f0be6;">
-        
-  Crear
-
- </button>
-
-</div>
 
 </div>
 
 
 <!--https://elfreneticoinformatico.com/crear-ventana-emergente-popup-angular-7/-->
 
+<!--<div class="example-container"
+    [class.mat-elevation-z2]="!isActive"
+    [class.mat-elevation-z8]="isActive">
+  Example
+</div>
+
+<button mat-button (click)="isActive = !isActive">Toggle Elevation</button>-->
+
 <div [hidden]="!bandera">
 <form [formGroup]="formulario">
-  <div>
-  <ul>
-      <input formControlName="grupNombre">
-
-      <input formControlName="grupDescripcion">
-  </ul>
-  </div>
-    <div>
-      <ul>
-      <button mat-raised-button (click)="guardar()" style="color:aliceblue; background-color:#d81111;">
+  <div class="container" class="mat-elevation-z8" style=" text-align: center; margin-inline-start: 10px; margin-inline-end: 10px; margin-top: -10px;">
+   <ul>
+     <h1>Formulario de Grupos</h1>
+     <br>
+      <input type="text" class="input" formControlName="grupNombre">
+    <br>
+    <br>
+    <br>
+      <input type="text" class="input" formControlName="grupDescripcion">
+      <br>
+      <br>
+      <button mat-raised-button (click)="guardar()" style="color:aliceblue; background-color:#11d822;">
             Guardar
         </button>
+        &nbsp;
+        <button mat-raised-button (click)="cancelar()" style="color:aliceblue; background-color:#d81111; ">
+          Cancelar
+      </button>
      </ul>
-    </div>
+  </div>
 </form>
 </div>
+
+<!--<button mat-button (click)="openDialog()">Open dialog</button>-->

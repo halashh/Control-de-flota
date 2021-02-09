@@ -3,6 +3,9 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 import { MatTableDataSource } from '@angular/material/table';
 import { GrupService } from './grup.service';
 import { Grupo } from './Grupo';
+import {MatDialog} from '@angular/material/dialog';
+
+
 
 
 @Component({
@@ -17,7 +20,7 @@ export class GrupMovilesComponent implements OnInit {
   formulario= new FormGroup({});
 
   bandera=false;
-  
+ 
  ngOnInit(): void {
     this.servicio.get().subscribe((parametro)=>{this.array=parametro;this.actualizar();}) 
     this.formulario=this.formBuilder.group({grupId:[''],grupNombre:['',Validators.required],grupDescripcion:['',Validators.required],grupFechaAlta:[''],grupBorrado:['']});
@@ -29,16 +32,16 @@ export class GrupMovilesComponent implements OnInit {
   table = new MatTableDataSource <Grupo>();
 
  
-  constructor(public servicio:GrupService, public formBuilder:FormBuilder){
+  constructor(public servicio:GrupService, public formBuilder:FormBuilder, public dialog: MatDialog){
     
   }
-
+ 
 
   public editar(editar:Grupo){
 
-      this.bandera=true;
-      this.grupoSelected=editar;
-      this.formulario.setValue(editar);
+       this.bandera=true;
+       this.grupoSelected=editar;
+       this.formulario.setValue(editar);
 
   }
 
@@ -77,14 +80,28 @@ export class GrupMovilesComponent implements OnInit {
 
     }
 
-
+    cancelar() {
+      this.bandera = false;
+    }
+ 
+   
     private actualizar() {
 
     this.table.data=this.array;
     
     }
 
+    isActive = false;
     
+  /*
+    openDialog() {
+    const dialogRef = this.dialog.open();
 
-
+    dialogRef.afterClosed().subscribe(result => {
+     console.log(`Dialog result: ${result}`);
+   });
+  } 
+ */
 }
+
+

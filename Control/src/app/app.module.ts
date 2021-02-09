@@ -17,12 +17,18 @@ import { AppConfigService } from './core/config.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
-import { FormularioComponent } from './formulario/formulario.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { LyDialogModule } from '@alyle/ui/dialog';
+import { LyGridModule } from '@alyle/ui/grid';
+import { LyButtonModule } from '@alyle/ui/button';
+import { LyTypographyModule } from '@alyle/ui/typography';
+
+
 
 
 @NgModule({
@@ -31,7 +37,7 @@ import { FormsModule } from '@angular/forms';
     GrupMovilesComponent,
     ServiciosComponent,
     TareasComponent,
-    FormularioComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,13 @@ import { FormsModule } from '@angular/forms';
     MatRadioModule,
     MatCheckboxModule,
     FormsModule,
+    MatToolbarModule,
+    LyDialogModule,
+    LyGridModule,
+    LyButtonModule,
+    LyTypographyModule,
+    
+    
     
     
   ],

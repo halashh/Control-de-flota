@@ -1,0 +1,53 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.container{
+   margin-top: 100px;
+   text-align: center;
+   
+ 
+}
+
+.container ul{
+    list-style:none;
+    text-align: center;
+}
+
+.form{
+    margin-top: 10px;
+    padding: 0px;
+    max-width: 400px;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+
+  
+.input{
+    text-align: center;
+    border: 1px solid #DBE1EB;
+    font-size: 18px;
+    font-family: Arial, Verdana;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    background: #FFFFFF;
+    background: linear-gradient(left, #FFFFFF, #F7F9FA);
+    background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+    background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+    background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+    color: #2E3133;
+    border-color: rgba(255, 145, 0, 0.678);
+    box-shadow: 0 1px 1px rgba(179, 73, 8, 0.616)inset, 0 0 8px rgba(158, 53, 11, 0.6);
+  
+}
+
+
+
+
+
+
+
