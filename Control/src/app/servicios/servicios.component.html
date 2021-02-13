@@ -1,5 +1,5 @@
-<body style="background-color:rgba(218, 216, 212, 0.377)">
-    <div style="width: 50%;" class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;" >
+
+    <div style="width: 50%;" class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;" [hidden]="bandera">
         <mat-divider></mat-divider>
 <table mat-table [dataSource]="table" class="mat-elevation-z8" style="width: 100%; ">
 
@@ -26,17 +26,17 @@
   
     <!-- Symbol Column --> 
     <ng-container matColumnDef="servPeriodo" style="text-align: left;">
-      <th mat-header-cell *matHeaderCellDef> Fecha de Alta</th>
+      <th mat-header-cell *matHeaderCellDef> Periodo</th>
       <td mat-cell *matCellDef="let elemen"> {{elemen.servPeriodo}} </td>
     </ng-container>
 
     <ng-container matColumnDef="servKM" style="text-align: left;">
-        <th mat-header-cell *matHeaderCellDef> Fecha de Alta</th>
+        <th mat-header-cell *matHeaderCellDef> KM </th>
         <td mat-cell *matCellDef="let elemen"> {{elemen.servKM}} </td>
       </ng-container>
 
       <ng-container matColumnDef="servFecha" style="text-align: left;">
-        <th mat-header-cell *matHeaderCellDef> Fecha de Alta</th>
+        <th mat-header-cell *matHeaderCellDef> Fecha de servicio </th>
         <td mat-cell *matCellDef="let elemen"> {{elemen.servFecha}} </td>
       </ng-container>
 
@@ -46,16 +46,28 @@
       </ng-container>
       <ng-container matColumnDef="Discontinued" style="text-align: left;">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let elemen"> <button mat-raised-button  style="color:aliceblue; background-color:#4CAF50;"> <span class="material-icons">
+        <td mat-cell *matCellDef="let elemen"> 
+          <div style="text-align: right;">
+          <button mat-raised-button (click)="editar(elemen)" style="color:aliceblue; background-color:#66bb6a;"> <span class="material-icons">
             border_color
             </span> </button> 
             &nbsp;
-            <button mat-raised-button  style="color:aliceblue; background-color:#d81111;">
+            <button mat-raised-button  (click)="borrar(elemen)" style="color:aliceblue; background-color:#ff7043;">
             <span class="material-icons">
                 clear
             </span>
 
             </button>
+
+            &nbsp;
+            <button mat-raised-button (click)="crear()"  style="color:aliceblue; background-color:#ba68c8; text-align: center;">
+              
+              <span class="material-icons">
+                add_circle_outline
+                </span>
+      
+             </button>
+          </div>
         </td>
       </ng-container>
  
@@ -64,4 +76,103 @@
   </table> 
 
   </div>
-  </body>
+  
+
+ <!-- <div [hidden]="!bandera">
+    <form [formGroup]="formu">
+      <div class="container" class="mat-elevation-z8" style=" text-align: center; margin-inline-start: 10px; margin-inline-end: 10px; margin-top: -10px;">
+       <ul>
+         <h1>Formulario de Servicios</h1>
+         <br>
+          <input type="text" class="input" placeholder="Nombre del servicio" formControlName="servNombre">
+        <br>
+        <br>
+        <br>
+          <input type="text" class="input" placeholder="Descripción" formControlName="servDescripcion">
+          <br>
+          <br>
+          <input type="text" class="input" placeholder="Periodo" formControlName="servPeriodo">
+        <br>
+        <br>
+        <br>
+          <input type="text" class="input" placeholder="KM" formControlName="servKM">
+          <br>
+          <br>
+          <input type="text" class="input" placeholder="Fecha" formControlName="servFecha">
+        <br>
+          <br>
+          <button mat-raised-button (click)="guardar()" style="color:aliceblue; background-color:#11d822;">
+                Guardar
+            </button>
+            &nbsp;
+            <button mat-raised-button (click)="cancelar()" style="color:aliceblue; background-color:#d81111; ">
+              Cancelar
+          </button>
+         </ul>
+      </div>
+    </form>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div [hidden]="!bandera">
+      <form [formGroup]="formu" class="col s12">
+        <div class="container" style="text-align: center;">
+        <div class="row" style="margin-top: 30px;">
+          <div class="input-field col s6">
+            <input placeholder="Nombre del servicio" type="text" class="validate" id="Nombre" formControlName="servNombre" onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == [32])" required>
+            <label class="active" for="Nombre">*Nombre del servicio</label>
+            <div *ngIf="formu.controls['servNombre'].invalid" class="text-danger" style="color:#d81111;  font: bold 70% monospace;">*Nombre del servicio requerido*</div>
+          </div>
+          <div class="input-field col s6">
+            <input formControlName="servDescripcion" id="Descripción" type="text" class="validate" onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == [32])" required>
+            <label class="active" for="Descripción">*Descripción</label>
+            <div *ngIf="formu.controls['servDescripcion'].invalid" class="text-danger" style="color:#d81111;  font: bold 70% monospace;">*Descripción requerida*</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="Periodo" id="Periodo" formControlName="servPeriodo" type="number" class="validate" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" required>
+            <label class="active" for="Periodo">*Periodo</label>
+            <div *ngIf="formu.controls['servPeriodo'].invalid" class="text-danger" style="color:#d81111;  font: bold 70% monospace;">*Periodo requerido*</div>
+          </div>
+          <div class="input-field col s6">
+            <input  placeholder="Kilómetro" type="number" id="km" class="validate" formControlName="servKM" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" required>
+            <label class="active" for="km">*KM</label>
+            <div *ngIf="formu.controls['servKM'].invalid" class="text-danger" style="color:#d81111;  font: bold 70% monospace;">*Kilómetro requerido*</div>
+          </div>
+          <div class="input-field col s6" style="font-weight: bold">
+            <input type="text" id="FechaAlta" style="font-weight: bold" readonly="readonly" formControlName="servFechaAlta"/>
+            <label class="active" style="font-weight: bold" for="FechaAlta">Fecha de alta</label>
+          </div>
+        </div>
+        <a class="waves-effect waves-light btn" style="margin-top: 100px;"(click)="cancelar()" ><i class="material-icons right">cloud_off</i>Cancelar</a>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <button class="btn waves-effect waves-light" style="margin-top: 100px;" (click)="guardar()"  type="submit" name="action">Guardar<i class="material-icons right">cloud_done</i></button>
+      </div>
+      </form>
+    </div>
+    <router-outlet></router-outlet> 
+
+
+
+
+
+
+
+
+    
+    

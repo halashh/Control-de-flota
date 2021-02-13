@@ -1,9 +1,9 @@
-
-<body style="background-color:rgba(218, 216, 212, 0.377)">
-    <div style="width: 50%;" class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;" >
+<html>
+<body style="background-color:rgb(255, 255, 255)">
+    <div style="width: 50%;" class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;">
       
     <ul style="text-align: center;">
-         <img src="assets\icon.png"  style=" z-index: -100; opacity: 0.75;">
+         <img src="assets\icon.png"  style=" z-index: -100; opacity: 0.70;">
     </ul>
       <br>
         <h2 style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICIO DE CONTROL PARA FLOTAS</h2>
@@ -12,37 +12,34 @@
         <br>
         <br>
         <mat-divider></mat-divider>
-          <a routerLink="/GrupMovil" class="button" mat-raised-button > <mat-icon>table_view</mat-icon> Grupo de moviles </a>
-      
-       
-          
-          <a routerLink="/Serv" class="button" mat-raised-button > <mat-icon>assignment</mat-icon> Servicios </a>
-      
         
-         
-          <a routerLink="/Tareas" class="button" mat-raised-button ><mat-icon>account_box</mat-icon> Tareas </a>
-    
-          
+        <nav>      
+          <div class="nav-wrapper ">    
+            <ul>
+              <li><a routerLink="/GrupMovil">Grupo de moviles</a></li>
+              <li><a routerLink="/Serv">Servicios</a></li>
+              <li><a routerLink="/Tareas">Tareas</a></li>
+              
+            </ul>
         </div>
-
-
-
-
-         
-       
-       
-
-    <router-outlet></router-outlet>
-
+        </nav>     
+        <!--  <a routerLink="/GrupMovil" class="button" mat-raised-button > <mat-icon>table_view</mat-icon> Grupo de moviles </a>         
+          <a routerLink="/Serv" class="button" mat-raised-button > <mat-icon>assignment</mat-icon> Servicios </a>        
+          <a routerLink="/Tareas" class="button" mat-raised-button ><mat-icon>account_box</mat-icon> Tareas </a>-->
+           
+        </div>            
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script> 
+        <router-outlet></router-outlet>
 </body>
-  
-        
-<footer>
-  <div class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;" >
-  <p>
-    <mat-toolbar>
-      <span>@copyright</span>
-    </mat-toolbar>
-  </p>
-</div>
+<div class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;">
+<footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="container">
+    © 2014 Copyright
+    </div>
+  </div>
 </footer>
+</div>
+
+</html>

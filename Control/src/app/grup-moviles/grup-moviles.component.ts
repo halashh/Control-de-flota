@@ -35,7 +35,7 @@ export class GrupMovilesComponent implements OnInit {
   constructor(public servicio:GrupService, public formBuilder:FormBuilder, public dialog: MatDialog){
     
   }
- 
+  is_edit : boolean = false;
 
   public editar(editar:Grupo){
 

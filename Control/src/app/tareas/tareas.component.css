@@ -1,0 +1,31 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.container{
+    margin-top: 100px;
+    text-align: center;
+    
+  
+ }
+ 
+ .container ul{
+     list-style:none;
+     text-align: center;
+ }
+ 
+ .form{
+     margin-top: 10px;
+     padding: 0px;
+     max-width: 400px;
+     border-radius: 20px;
+     text-align: center;
+     
+   }
+ 
+ 
+   
+
+   input:invalid {   
+    background-color: rgba(238, 110, 93, 0.116);
+  }
+
+ 
+ 

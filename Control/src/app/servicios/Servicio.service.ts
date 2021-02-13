@@ -9,8 +9,8 @@ import { Servicio } from "./Servicio";
 
 export class Servicios extends ApiService <Servicio>{
 
-    constructor(public httpp:HttpClient, public apppi:AppConfigService){
-        super("servicio",httpp,apppi);
+    constructor(public httpp:HttpClient, public appi:AppConfigService){
+        super("servicio",httpp,appi);
     }
 
 } 
