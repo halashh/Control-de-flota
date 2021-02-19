@@ -30,16 +30,32 @@
         </div>            
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script> 
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet">
         <router-outlet></router-outlet>
 </body>
-<div class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;">
-<footer class="page-footer">
+
+<footer class="page-footer" style="margin-top:250px;">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s8">
+        <h5 class="white-text"></h5>
+        <p class="grey-text text-lighten-4">Sistema de control de flotas.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Pestañas:</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" routerLink="/GrupMovil">Grupo de moviles</a></li>
+          <li><a class="grey-text text-lighten-3" routerLink="/Serv">Servicios</a></li>
+          <li><a class="grey-text text-lighten-3" routerLink="/Tareas">Tareas</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="footer-copyright">
     <div class="container">
-    © 2014 Copyright
+    © 2021 Copyright
+    <a class="grey-text text-lighten-4 right" style="font-weight:bold; font-size:xx-large" href="http://www.soflex.com.ar/">Soflex</a>
     </div>
   </div>
 </footer>
-</div>
-
 </html>

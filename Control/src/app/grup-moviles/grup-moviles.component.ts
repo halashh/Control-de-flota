@@ -7,7 +7,6 @@ import {MatDialog} from '@angular/material/dialog';
 
 
 
-
 @Component({
   selector: 'app-grup-moviles',
   templateUrl: './grup-moviles.component.html',

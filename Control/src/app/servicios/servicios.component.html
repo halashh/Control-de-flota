@@ -164,7 +164,15 @@
         <button class="btn waves-effect waves-light" style="margin-top: 100px;" (click)="guardar()"  type="submit" name="action">Guardar<i class="material-icons right">cloud_done</i></button>
       </div>
       </form>
+
+
+
+      <div *ngIf="servSelected && servSelected.servId && bandera">
+        <app-servicio-tarea [servId]="servSelected.servId"></app-servicio-tarea> 
+     </div>
     </div>
+
+
     <router-outlet></router-outlet> 
 
 

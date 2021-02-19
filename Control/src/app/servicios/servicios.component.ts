@@ -16,7 +16,7 @@ export class ServiciosComponent implements OnInit {
   ngOnInit(): void {
     this.servicio.get().subscribe((parametro)=>{this.arreglo=parametro;this.actualizar();}) 
     this.formu=this.formBuilder.group({servId:[''],servNombre:['',Validators.required],servDescripcion:['',Validators.required],servPeriodo:['',Validators.required],servKM:['',Validators.required],
-    servFecha:['',Validators.required],servFechaAlta:['']});
+    servFecha:['',Validators.required],servFechaAlta:[''],servBorrado:['']});
   }
 
   columna: string[] = ['servId', 'servNombre', 'servDescripcion', 'servPeriodo', 'servKM', 'servFecha', 'servFechaAlta','Discontinued'];

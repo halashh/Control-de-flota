@@ -1,3 +1,4 @@
+import { LyDialog } from '@alyle/ui/dialog';
 import { Component } from '@angular/core';
 
 
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Control';
+ 
 }

@@ -1,8 +1,12 @@
+<html>
+  <header>
 
-
-
-<div style="width: 50%;" class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;" [hidden]="bandera">
+  </header>
+<body>
+<div clas="row">
+<div class="container" style="width: 50%;" class="mat-elevation-z8" style=" margin-inline-start: 10px; margin-inline-end: 10px;" [hidden]="bandera">
     <mat-divider></mat-divider>
+
 <table mat-table [dataSource]="table" class="mat-elevation-z8" style="width: 100%; ">
 
 <!--- Note that these columns can be defined in any order.
@@ -124,8 +128,15 @@
 </div>
 <!--<button mat-button (click)="openDialog()">Open dialog</button>-->
 
+
+</div>
+
+</body>
+
+
+
+
+<footer>
 <router-outlet></router-outlet>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-
+</footer>
+</html>

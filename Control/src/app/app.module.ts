@@ -27,6 +27,8 @@ import { LyDialogModule } from '@alyle/ui/dialog';
 import { LyGridModule } from '@alyle/ui/grid';
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyTypographyModule } from '@alyle/ui/typography';
+import { ServicioTareaComponent } from './servicio-tarea/servicio-tarea.component';
+
 
 
 
@@ -37,6 +39,7 @@ import { LyTypographyModule } from '@alyle/ui/typography';
     GrupMovilesComponent,
     ServiciosComponent,
     TareasComponent,
+    ServicioTareaComponent,
     
   ],
   imports: [
@@ -63,7 +66,7 @@ import { LyTypographyModule } from '@alyle/ui/typography';
     LyGridModule,
     LyButtonModule,
     LyTypographyModule,
-    
+
     
     
     

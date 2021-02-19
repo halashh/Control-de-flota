@@ -1,8 +1,8 @@
 export class Tarea{
     tareId: number = 0;           
-    tareNombre:String = "";     
-    tareDescripcion:String = "";
-    tareUnidadMedida:String = "";        	
+    tareNombre:string = "";     
+    tareDescripcion:string = "";
+    tareUnidadMedida:string = "";        	
     tareCantidad:Boolean = true;    
     tareCosto:Boolean=false;
     tareFechaAlta:Date = new Date();
