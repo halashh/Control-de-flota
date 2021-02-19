@@ -10,6 +10,6 @@ import { ServicioTarea } from '../servicio-tarea/Servicio-Tarea';
 export class ServicioTareaService  extends ApiService<ServicioTarea>{
   constructor(protected http: HttpClient,
     protected app: AppConfigService ){
-    super("sv-tr", http, app);
+    super("servicio-tarea", http, app);
   }
 }

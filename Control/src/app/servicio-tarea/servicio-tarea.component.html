@@ -3,11 +3,46 @@
 <div class="col s12">
 <div [hidden]="bandera">
     <table mat-table [dataSource]="table" class="mat-elevation-z8">
-        <mat-text-column name="setaId" headerText="ID Servicio/Tarea"></mat-text-column>
+        <!--<mat-text-column name="setaId" headerText="ID Servicio/Tarea"></mat-text-column>
         <mat-text-column name="setaServId" headerText="ID Servicio"></mat-text-column>
         <mat-text-column name="setaTareId" headerText="ID Tarea"></mat-text-column>
         <mat-text-column name="tareNombre" headerText="Nombre"></mat-text-column>
-        <mat-text-column name="setaFechaAlta" headerText="Fecha de Alta"></mat-text-column>
+        <mat-text-column name="setaFechaAlta" headerText="Fecha de Alta"></mat-text-column>-->
+
+
+
+
+
+
+        <ng-container matColumnDef="setaId">
+            <th mat-header-cell *matHeaderCellDef> Número </th>
+            <td mat-cell *matCellDef="let element"> {{element.setaId}} </td>
+          </ng-container>
+          
+          <!-- Name Column -->
+          <ng-container matColumnDef="setaServId">
+            <th mat-header-cell *matHeaderCellDef> Nombre del grupo </th>
+            <td mat-cell *matCellDef="let element"> {{element.setaServId}} </td>
+          </ng-container>
+          
+          <!-- Weight Column -->
+          <ng-container matColumnDef="setaTareId">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.setaTareId}} </td>
+          </ng-container>
+          
+          <!-- Symbol Column --> 
+          <ng-container matColumnDef="tareNombre" style="text-align: left;">
+            <th mat-header-cell *matHeaderCellDef> Nombre de tarea</th>
+            <td mat-cell *matCellDef="let element"> {{element.tareNombre}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="setaFechaAlta" style="text-align: left;">
+            <th mat-header-cell *matHeaderCellDef> Fecha de Alta</th>
+            <td mat-cell *matCellDef="let element"> {{element.setaFechaAlta}} </td>
+          </ng-container>
+
+
         <ng-container matColumnDef="Discontinued">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
@@ -23,9 +58,7 @@
         <tr mat-header-row *matHeaderRowDef="columnas"></tr>
         <tr mat-row *matRowDef="let row; columns: columnas"></tr>
 
-        <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">Elementos:</td>
-        </tr>
+      
     </table>
 
     <div style="text-align: center;">

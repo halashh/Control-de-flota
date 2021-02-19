@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ServicioTareaService } from '../servicio-tarea/serv-tarea.service';
+import { ServicioT } from '../ServicioGlobal/Servicio';
 import { Servicio } from './Servicio';
 import { Servicios } from './Servicio.service';
 
@@ -28,7 +30,7 @@ export class ServiciosComponent implements OnInit {
 
   bandera=false;
 
-  constructor(public servicio:Servicios,public formBuilder:FormBuilder, public dialog: MatDialog){
+  constructor(public servicio:Servicios,public formBuilder:FormBuilder, public dialog: MatDialog, public servicioT:ServicioT, public servTar:ServicioTareaService){
 
   }
 
@@ -54,10 +56,11 @@ export class ServiciosComponent implements OnInit {
         }
         Object.assign(this.servSelected,this.formu.value);
         if(this.servSelected.servId){
-          this.servicio.put(this.servSelected).subscribe(service=>this.bandera=false);
+          this.servicio.put(this.servSelected).subscribe(service=>this.ServicioTareaActualizar(service.servId));
         }else{
-          this.servicio.post(this.servSelected).subscribe((service)=>{this.arreglo.push(service);this.bandera=false;this.actualizar();});
+          this.servicio.post(this.servSelected).subscribe((service)=>{this.arreglo.push(service);this.ServicioTareaActualizar(service.servId)});
         }
+        
   
     }
   
@@ -88,6 +91,18 @@ export class ServiciosComponent implements OnInit {
       }
    
      
-      
+      ServicioTareaActualizar(id : number){
+        this.servicioT.coleccionTarea.forEach( (dato) => { dato.setaServId = id;
+          if(dato.setaBorrado){
+            this.servTar.delete(dato.setaId).subscribe();
+          }else if(dato.setaId < 0){
+            this.servTar.post(dato).subscribe();
+          }else (dato.setaId > 0 )
+            this.servTar.put(dato).subscribe();
+          }
+       );
+        this.actualizar();
+        this.bandera = false;
+      }
 
 }

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServicioT } from '../ServicioGlobal/Servicio';
 import { Servicio } from '../servicios/Servicio';
+import { Tareas } from '../tareas/tarea.service';
 import { Tarea } from '../tareas/tareas';
 import { ServicioTareaService } from './serv-tarea.service';
 import { ServicioTarea } from './Servicio-Tarea';
@@ -19,7 +20,8 @@ export class ServicioTareaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ServicioTr.get(`setaServId=${this.servId}`).subscribe((parametro)=>{this.ServicioT.coleccionTarea=parametro;this.actualizar();}) 
+    this.tareaService.get().subscribe(parametro=>this.array=parametro);
+    this.ServicioTr.get(`setaServId=${this.servId}`).subscribe((parametro)=>{this.ServicioT.coleccionTarea=parametro;this.actualizar();});
     this.formulario=this.formBuilder.group({setaId:[''],setaServId:['',Validators.required],setaTareId:['',Validators.required],setaFechaAlta:[''],tareNombre:['']});
 
   }
@@ -41,7 +43,7 @@ export class ServicioTareaComponent implements OnInit {
   
 
 
-  constructor(public ServicioTr:ServicioTareaService, public formBuilder:FormBuilder, public dialog: MatDialog, public ServicioT:ServicioT){
+  constructor(public ServicioTr:ServicioTareaService, public formBuilder:FormBuilder, public dialog: MatDialog, public ServicioT:ServicioT, public tareaService:Tareas){
     
   }
 
@@ -51,6 +53,7 @@ export class ServicioTareaComponent implements OnInit {
     this.bandera=true;
     this.svTar=editar;
     this.formulario.setValue(editar);
+    this.actualizar();
 
 }
 
@@ -58,14 +61,26 @@ public guardar(){
    if(!this.formulario.valid){
        return;
    }
+
    Object.assign(this.svTar,this.formulario.value);
-   this.svTar.tareNombre=this.array.find(parametro=>parametro.tareId=this.svTar.setaTareId)!.tareNombre;
+
+
+   this.svTar.tareNombre=this.array.find(parametro=>parametro.tareId==this.svTar.setaTareId)!.tareNombre;
+
+
    if(this.svTar.setaId>0){
+
     const elemento = this.arregloServicioTar .find(arregloServicioTar  => arregloServicioTar .setaId == this.svTar.setaId);
+
     this.arregloServicioTar .splice(this.svTar.setaId, 1, elemento!);
+
    }else{
      this.ServicioT.coleccionTarea.push(this.svTar);
    }
+
+
+   this.bandera=false;
+   this.actualizar();
 
 }
 
