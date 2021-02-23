@@ -17,106 +17,91 @@ import { ServicioTarea } from './Servicio-Tarea';
 export class ServicioTareaComponent implements OnInit {
 
   
+  @Input() servId: number = 0;
+
+  SerTarGlobal: ServicioTarea[] = [];
+  servClass = new ServicioTarea();
+  formulario = new FormGroup({});
+  
+  constructor(private service: ServicioTareaService, private tservice: Tareas,private formBuilder: FormBuilder,public datosService: ServicioT) {
+
+   }
+
+
+  columnas: string[] = ['setaTareId','setaServId','tareNombre','Discontinued'];
+  dataSource = new MatTableDataSource<ServicioTarea>();
+  arrayt: Tarea[] = [];
+  bandera = false;
+  aux: number = -1;
 
   ngOnInit(): void {
 
-    this.tareaService.get().subscribe(parametro=>this.array=parametro);
-    this.ServicioTr.get(`setaServId=${this.servId}`).subscribe((parametro)=>{this.ServicioT.coleccionTarea=parametro;this.actualizar();});
-    this.formulario=this.formBuilder.group({setaId:[''],setaServId:['',Validators.required],setaTareId:['',Validators.required],setaFechaAlta:[''],tareNombre:['']});
-
+    this.formulario = this.formBuilder.group({ setaId: [''],setaServId: [''], setaTareId: ['', Validators.required], setaBorrado: [''], setaFechaAlta: [''], tareNombre: [''],})
+    this.service.get(`setaServId=${this.servId}`).subscribe((servicioTarea)=>{this.datosService.coleccionTarea = servicioTarea;this.actualizar(); } );
+    this.tservice.get().subscribe(  (productos) => {  this.arrayt = productos; })
   }
 
-  @Input() servId : number = 0 ;
+  actualizar() {
+    this.dataSource.data = this.datosService.coleccionTarea.filter(borrado => borrado.setaBorrado==false);
+  }
 
-  aux:number = -1 ;
+  agregar() {
 
-  bandera=false;
+    this.aux--;
+    this.servClass = new ServicioTarea();
+    this.servClass.setaId = this.aux;
+    this.formulario.setValue(this.servClass)
+    this.bandera = true;
+  }
 
-  svTar = new ServicioTarea();
-  arregloServicioTar : ServicioTarea[]=[];
-  formulario= new FormGroup({});
-  columnas: string[] = ['setaId', 'setaServId', 'setaTareId', 'setaFechaAlta','tareNombre','Discontinued'];
-
-  array: Tarea[] = [];
-
-  table = new MatTableDataSource <ServicioTarea>();
   
 
 
-  constructor(public ServicioTr:ServicioTareaService, public formBuilder:FormBuilder, public dialog: MatDialog, public ServicioT:ServicioT, public tareaService:Tareas){
-    
-  }
-
-
-  public editar(editar:ServicioTarea){
-
-    this.bandera=true;
-    this.svTar=editar;
-    this.formulario.setValue(editar);
-    this.actualizar();
-
-}
-
-public guardar(){
-   if(!this.formulario.valid){
-       return;
-   }
-
-   Object.assign(this.svTar,this.formulario.value);
-
-
-   this.svTar.tareNombre=this.array.find(parametro=>parametro.tareId==this.svTar.setaTareId)!.tareNombre;
-
-
-   if(this.svTar.setaId>0){
-
-    const elemento = this.arregloServicioTar .find(arregloServicioTar  => arregloServicioTar .setaId == this.svTar.setaId);
-
-    this.arregloServicioTar .splice(this.svTar.setaId, 1, elemento!);
-
-   }else{
-     this.ServicioT.coleccionTarea.push(this.svTar);
-   }
-
-
-   this.bandera=false;
-   this.actualizar();
-
-}
-
-public borrar(borrar:ServicioTarea){
-   
- this.ServicioTr.delete(borrar.setaId).subscribe(()=>{this.arregloServicioTar=this.arregloServicioTar.filter((ServicioTarea)=>{
-   if(ServicioTarea.setaId!=borrar.setaId){
-     return true;
-   }else{
-     return false;
-   }
- });
- this.actualizar();
-});
-}
-
-
- public crear(){
-
-   this.formulario.reset();
-   this.svTar=new ServicioTarea();
-   this.bandera=true;
-
- }
-
- cancelar() {
-   this.bandera = false;
- }
-
-
- private actualizar() {
-
-     this.table.data=this.ServicioT.coleccionTarea.filter(borrado=>borrado.setaBorrado = false);
-    
+  guardar() {
+    if (!this.formulario.valid) {
+      return;
     }
 
+    Object.assign(this.servClass, this.formulario.value);
+
+    this.servClass.tareNombre = this.arrayt.find(tarea => tarea.tareId == this.servClass.setaTareId)!.tareNombre;
+
+    if(this.servClass.setaId > 0){
+      const elemento = this.SerTarGlobal.find(sertar => sertar.setaId == this.servClass.setaId);
+      this.SerTarGlobal.splice(this.servClass.setaId, 1, elemento!);
+    }else{
+      this.datosService.coleccionTarea.push(this.servClass);
+    }
+
+    this.bandera=false;
+    this.actualizar();
+  }
+
+  editar(seleccionado: ServicioTarea) {
+    this.bandera = true;
+    this.servClass = seleccionado;
+    this.formulario.setValue(seleccionado);
+  }
+
+  borrar(fila: ServicioTarea) {
+
+        fila.setaBorrado = true;
+        this.actualizar();
+
+  }
+
+  nuevo() {
+
+    this.aux--;
+    this.servClass = new ServicioTarea();
+    this.servClass.setaId = this.aux;
+    this.formulario.setValue(this.servClass)
+    this.bandera = true;
+  }
+
+  cancelar() {
+    this.bandera = false;
+  }
 
 }
   
