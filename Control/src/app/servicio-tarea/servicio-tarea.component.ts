@@ -73,8 +73,12 @@ export class ServicioTareaComponent implements OnInit {
       this.datosService.coleccionTarea.push(this.servClass);
     }
 
-    this.bandera=false;
+
     this.actualizar();
+
+    this.bandera=false;
+  
+    
   }
 
   editar(seleccionado: ServicioTarea) {

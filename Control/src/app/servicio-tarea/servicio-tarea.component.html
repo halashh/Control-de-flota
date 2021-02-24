@@ -4,18 +4,18 @@
 
 
             <ng-container matColumnDef="setaServId">
-                <th mat-header-cell *matHeaderCellDef> Número </th>
+                <th mat-header-cell *matHeaderCellDef> ID servicio </th>
                 <td mat-cell *matCellDef="let element"> {{element.setaServId}} </td>
               </ng-container>
               
               <ng-container matColumnDef="setaTareId">
-                <th mat-header-cell *matHeaderCellDef> Nombre del grupo </th>
+                <th mat-header-cell *matHeaderCellDef> ID tarea </th>
                 <td mat-cell *matCellDef="let element"> {{element.setaTareId}} </td>
               </ng-container>
               
    
               <ng-container matColumnDef="tareNombre" style="text-align: left;">
-                <th mat-header-cell *matHeaderCellDef> Fecha de Alta</th>
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
                 <td mat-cell *matCellDef="let element"> {{element.tareNombre}} </td>
               </ng-container>
 
@@ -45,10 +45,10 @@
         </table>
 
         <div style="text-align: center;">
-            <button class="btn waves-effect waves-light" style="margin-top: 30px;" (click)="guardar()"  type="submit" name="action">Guardar<i class="material-icons right">cloud_done</i></button>
+            <button class="btn waves-effect waves-light" style="margin-top: 30px;" (click)="nuevo()"  type="submit" name="action">Nuevo<i class="material-icons right">cloud_done</i></button>
         </div>
     </div>
-
+</div>
     <div *ngIf="bandera">
 
         <form [formGroup]="formulario">
@@ -77,4 +77,3 @@
         </form>
 
     </div>
-</div>

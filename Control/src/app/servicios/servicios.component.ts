@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServicioTareaService } from '../servicio-tarea/serv-tarea.service';
+import { ServicioTareaComponent } from '../servicio-tarea/servicio-tarea.component';
 import { ServicioT } from '../ServicioGlobal/Servicio';
 import { Servicio } from './Servicio';
 import { Servicios } from './Servicio.service';
@@ -25,7 +26,7 @@ export class ServiciosComponent implements OnInit {
   arreglo: Servicio[] = [];
   table = new MatTableDataSource <Servicio>();
 
-  servSelected = new Servicio();
+  service = new Servicio();
   formu= new FormGroup({});
 
   bandera=false;
@@ -45,7 +46,7 @@ export class ServiciosComponent implements OnInit {
     public editar(editar:Servicio){
   
          this.bandera=true;
-         this.servSelected=editar;
+         this.service=editar;
          this.formu.setValue(editar);
   
     }
@@ -54,11 +55,11 @@ export class ServiciosComponent implements OnInit {
         if(!this.formu.valid){
             return;
         }
-        Object.assign(this.servSelected,this.formu.value);
-        if(this.servSelected.servId){
-          this.servicio.put(this.servSelected).subscribe(service=>this.ServicioTareaActualizar(service.servId));
+        Object.assign(this.service,this.formu.value);
+        if(this.service.servId){
+          this.servicio.put(this.service).subscribe(service=>this.ServicioTareaActualizar(service.servId));
         }else{
-          this.servicio.post(this.servSelected).subscribe((service)=>{this.arreglo.push(service);this.ServicioTareaActualizar(service.servId)});
+          this.servicio.post(this.service).subscribe((service)=>{this.arreglo.push(service);this.ServicioTareaActualizar(service.servId)});
         }
         
   
@@ -81,7 +82,7 @@ export class ServiciosComponent implements OnInit {
       public crear(){
   
         this.formu.reset();
-        this.servSelected=new Servicio();
+        this.service=new Servicio();
         this.bandera=true;
   
       }
@@ -105,4 +106,6 @@ export class ServiciosComponent implements OnInit {
         this.bandera = false;
       }
 
+
+     
 }

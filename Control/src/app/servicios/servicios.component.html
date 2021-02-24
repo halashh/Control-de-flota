@@ -165,10 +165,10 @@
       </div>
       </form>
 
-
-
-      <div *ngIf="servSelected && servSelected.servId && bandera">
-        <app-servicio-tarea [servId]="servSelected.servId"></app-servicio-tarea> 
+      
+     
+      <div *ngIf="service && service.servId && bandera">
+        <app-servicio-tarea [servId]="service.servId"></app-servicio-tarea> 
      </div>
     </div>
 
