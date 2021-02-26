@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { GrupService } from './grup.service';
 import { Grupo } from './Grupo';
 import {MatDialog} from '@angular/material/dialog';
+import { ServicioT } from '../ServicioGlobal/Servicio';
+import { GrupoServicioService } from '../servicio-grupo/grupo-servicio.service';
 
 
 
@@ -15,9 +17,9 @@ import {MatDialog} from '@angular/material/dialog';
 
 export class GrupMovilesComponent implements OnInit {
   
-  grupoSelected = new Grupo();
+  grupoServ = new Grupo();
   formulario= new FormGroup({});
-
+  @Input() grupId: number = 0;
   bandera=false;
  
  ngOnInit(): void {
@@ -31,7 +33,7 @@ export class GrupMovilesComponent implements OnInit {
   table = new MatTableDataSource <Grupo>();
 
  
-  constructor(public servicio:GrupService, public formBuilder:FormBuilder, public dialog: MatDialog){
+  constructor(public servicio:GrupService, public formBuilder:FormBuilder, public dialog: MatDialog, public servicioT:ServicioT, public grupServicio:GrupoServicioService){
     
   }
   is_edit : boolean = false;
@@ -39,23 +41,12 @@ export class GrupMovilesComponent implements OnInit {
   public editar(editar:Grupo){
 
        this.bandera=true;
-       this.grupoSelected=editar;
+       this.grupoServ=editar;
        this.formulario.setValue(editar);
 
   }
 
-  public guardar(){
-      if(!this.formulario.valid){
-          return;
-      }
-      Object.assign(this.grupoSelected,this.formulario.value);
-      if(this.grupoSelected.grupId){
-        this.servicio.put(this.grupoSelected).subscribe(service=>this.bandera=false);
-      }else{
-        this.servicio.post(this.grupoSelected).subscribe((service)=>{this.array.push(service);this.bandera=false;this.actualizar();});
-      }
 
-  }
 
   public borrar(borrar:Grupo){
       
@@ -70,19 +61,57 @@ export class GrupMovilesComponent implements OnInit {
   });
   }
 
+  
 
     public crear(){
 
       this.formulario.reset();
-      this.grupoSelected=new Grupo();
+      this.grupoServ=new Grupo();
       this.bandera=true;
 
+    }
+
+    actualizarGrupoServ(id : number){
+      this.servicioT.coleccionGrupoServicio.forEach( (dato) => { dato.grusGrupId = id;
+        if(dato.grusBorrado){
+          this.grupServicio.delete(dato.grusId).subscribe();
+        }else if(dato.grusId < 0){
+          this.grupServicio.post(dato).subscribe();
+        }else (dato.grusId > 0 )
+          this.grupServicio.put(dato).subscribe();
+        }
+     );
+      this.actualizar();
+      this.bandera = false;
     }
 
     cancelar() {
       this.bandera = false;
     }
  
+    guardarGrupoServicio() {
+      if (!this.formulario.valid) {
+        return;
+      }
+  
+      Object.assign(this.grupoServ, this.formulario.value);
+  
+      if (this.grupoServ.grupId) {
+        this.servicio.put(this.grupoServ)
+          .subscribe((grupo) => {
+            this.actualizarGrupoServ(grupo.grupId);
+          });
+  
+      } else {
+        this.servicio.post(this.grupoServ)
+          .subscribe((grupo) => {
+            this.array.push(grupo);
+            this.actualizarGrupoServ(grupo.grupId);
+          });
+  
+      }
+  
+    }
    
     private actualizar() {
 

@@ -120,11 +120,16 @@
       &nbsp;
       &nbsp;
       &nbsp;
-      <button class="btn waves-effect waves-light" style="margin-top: 100px;" (click)="guardar()"  type="submit" name="action">Guardar<i class="material-icons right">cloud_done</i></button>
+      <button class="btn waves-effect waves-light" style="margin-top: 100px;" (click)="guardarGrupoServicio()"  type="submit" name="action">Guardar<i class="material-icons right">cloud_done</i></button>
     
     </div> 
   </div>  
   </form>
+  
+<div *ngIf="grupoServ && grupoServ.grupId && bandera">
+  <app-servicio-grupo [grupId]="grupoServ.grupId"></app-servicio-grupo> 
+</div>
+
 </div>
 <!--<button mat-button (click)="openDialog()">Open dialog</button>-->
 

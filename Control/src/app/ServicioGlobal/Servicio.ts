@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { GrupoServicio } from '../servicio-grupo/grupo-servicio';
 import { ServicioTarea } from '../servicio-tarea/Servicio-Tarea';
 
 
@@ -8,5 +9,6 @@ import { ServicioTarea } from '../servicio-tarea/Servicio-Tarea';
 export class ServicioT {
 
     coleccionTarea : ServicioTarea[] = []; 
+    coleccionGrupoServicio : GrupoServicio[] = [];
   constructor(){}
 }

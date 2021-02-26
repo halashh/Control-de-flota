@@ -29,7 +29,7 @@ export class ServicioTareaComponent implements OnInit {
 
 
   columnas: string[] = ['setaTareId','setaServId','tareNombre','Discontinued'];
-  dataSource = new MatTableDataSource<ServicioTarea>();
+  table = new MatTableDataSource<ServicioTarea>();
   arrayt: Tarea[] = [];
   bandera = false;
   aux: number = -1;
@@ -42,7 +42,7 @@ export class ServicioTareaComponent implements OnInit {
   }
 
   actualizar() {
-    this.dataSource.data = this.datosService.coleccionTarea.filter(borrado => borrado.setaBorrado==false);
+    this.table.data = this.datosService.coleccionTarea.filter(borrado => borrado.setaBorrado==false);
   }
 
   agregar() {
@@ -87,9 +87,9 @@ export class ServicioTareaComponent implements OnInit {
     this.formulario.setValue(seleccionado);
   }
 
-  borrar(fila: ServicioTarea) {
+  borrar(servTelementos: ServicioTarea) {
 
-        fila.setaBorrado = true;
+        servTelementos.setaBorrado = true;
         this.actualizar();
 
   }

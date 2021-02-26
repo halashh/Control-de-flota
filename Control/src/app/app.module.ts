@@ -34,6 +34,8 @@ import { ServicioGrupoComponent } from './servicio-grupo/servicio-grupo.componen
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,8 @@ import { ServicioGrupoComponent } from './servicio-grupo/servicio-grupo.componen
     TareasComponent,
     ServicioTareaComponent,
     ServicioGrupoComponent,
+
+    
     
   ],
   imports: [
