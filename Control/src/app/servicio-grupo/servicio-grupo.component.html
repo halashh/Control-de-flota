@@ -42,6 +42,12 @@
                         clear
                     </span>
                 </button>
+                &nbsp;
+                <button mat-raised-button style="margin-top: 30px;" (click)="crear()"  type="submit" name="action" style="color:aliceblue; background-color:#ba68c8; text-align: center;">
+                <span class="material-icons">
+                    add_circle_outline
+                    </span>
+                </button>
             </td>
         </ng-container>
 
@@ -53,9 +59,7 @@
         </tr>
     </table>
 
-    <div style="text-align: center;">
-        <button class="btn waves-effect waves-light" style="margin-top: 30px;" (click)="crear()"  type="submit" name="action">Nuevo<i class="material-icons right">cloud_done</i></button>
-    </div>
+    
 </div>
 
 <div *ngIf="bandera">

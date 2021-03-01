@@ -29,6 +29,7 @@ import { LyButtonModule } from '@alyle/ui/button';
 import { LyTypographyModule } from '@alyle/ui/typography';
 import { ServicioTareaComponent } from './servicio-tarea/servicio-tarea.component';
 import { ServicioGrupoComponent } from './servicio-grupo/servicio-grupo.component';
+import { MovilComponent } from './movil/movil.component';
 
 
 
@@ -44,6 +45,7 @@ import { ServicioGrupoComponent } from './servicio-grupo/servicio-grupo.componen
     TareasComponent,
     ServicioTareaComponent,
     ServicioGrupoComponent,
+    MovilComponent,
 
     
     
