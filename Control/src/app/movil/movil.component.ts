@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Movil } from './Movil';
+import { MovilService } from './MovilService';
 
 @Component({
   selector: 'app-movil',
@@ -7,9 +12,139 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovilComponent implements OnInit {
 
-  constructor() { }
+  //constructor(public movilService : MovilService, public formBuilder : FormBuilder, public datosService : DatosService, public mgService : MovilGrupoService, public msService: MovilServicioService) { }
 
-  ngOnInit(): void {
+  moviles : Movil [] = [];
+  columnas: string[] = ['moviId', 'moviModoFecha','moviModoOdometro', 'Discontinued'];
+  dataSource = new MatTableDataSource<Movil>();
+  
+  formulario = new FormGroup({});
+  mostrarFormulario = false;
+  mostrarForm = false;
+
+  @ViewChild(MatSort) sort! : MatSort;
+
+  movilSelected = new Movil();
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  ngOnInit(): void {
+   /* this.formulario = this.formBuilder.group({
+      moviId: [''],
+      moviModoFecha: ['', Validators.required],
+      moviModoOdometro: ['', Validators.required],
+      moviBorrado: [''],
+      moviFechaAlta: ['']
+    });
+
+     this.movilService.get().subscribe((movil) => {
+        this.moviles = movil;
+        this.actualizar();
+      }
+    )*/
+  }
+
+  actualizar(){
+   this.dataSource.data = this.moviles;
+   this.dataSource.sort = this.sort;
+  }
+
+  /*actualizarMG(id : number){
+    this.datosService.movgru.forEach( (dato) => { dato.mogrMoviId = id;
+      if(dato.mogrBorrado){
+        this.mgService.delete(dato.mogrId).subscribe();
+      }else if(dato.mogrId < 0){
+        this.mgService.post(dato).subscribe();
+      }else (dato.mogrId > 0 )
+        this.mgService.put(dato).subscribe();
+      }
+   );
+    this.actualizar();
+    this.mostrarFormulario = false;
+  }*/
+
+  /*actualizarMS(id : number){
+    this.datosService.movser.forEach( (dato) => { dato.moseServId = id;
+      if(dato.moseBorrado){
+        this.msService.delete(dato.moseId).subscribe();
+      }else if(dato.moseId < 0){
+        this.msService.post(dato).subscribe();
+      }else (dato.moseId > 0 )
+        this.msService.put(dato).subscribe();
+      }
+   );
+    this.actualizar();
+    this.mostrarForm = false;
+  }*/
+
+  agregar() {
+    this.formulario.reset();
+    this.movilSelected = new Movil();
+    this.mostrarFormulario = true;
+  }
+
+  editar(seleccionado: Movil) {
+    this.mostrarFormulario = true;
+    this.movilSelected = seleccionado;
+    this.formulario.setValue(seleccionado);
+  }
+
+  modificar(seleccionado: Movil) {
+    this.mostrarForm = true;
+    this.movilSelected = seleccionado;
+    this.formulario.setValue(seleccionado);
+  }
+
+  /*borrar(fila: Movil) {
+        this.mS.delete(fila.moviId)
+          .subscribe(() => {
+            this.moviles = this.moviles.filter((movil) => {
+              if (movil.moviId != fila.moviId) {
+                return true
+              } else {
+                return false
+              }
+            });
+            this.actualizar();
+          });
+  }*/
+
+  /*guardar() {
+    if (!this.formulario.valid) {
+      return;
+    }
+
+    Object.assign(this.movilSelected, this.formulario.value);
+
+    if (this.movilSelected.moviId) {
+      this.mS.put(this.movilSelected)
+        .subscribe((movil) => {
+          this.actualizarMG(movil.moviId);
+          this.actualizarMS(movil.moviId);
+        });
+
+    } else {
+      this.mS.post(this.movilSelected)
+        .subscribe((movil) => {
+          this.moviles.push(movil);
+          this.mostrarFormulario = false;
+          this.actualizarMG(movil.moviId);
+          this.actualizarMS(movil.moviId);
+        });
+
+    }
+
+  }*/
+
+  cancelar() {
+    this.mostrarFormulario = false;
+  }
 }

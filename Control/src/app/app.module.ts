@@ -23,13 +23,10 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { LyDialogModule } from '@alyle/ui/dialog';
-import { LyGridModule } from '@alyle/ui/grid';
-import { LyButtonModule } from '@alyle/ui/button';
-import { LyTypographyModule } from '@alyle/ui/typography';
 import { ServicioTareaComponent } from './servicio-tarea/servicio-tarea.component';
 import { ServicioGrupoComponent } from './servicio-grupo/servicio-grupo.component';
 import { MovilComponent } from './movil/movil.component';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 
 
@@ -70,10 +67,7 @@ import { MovilComponent } from './movil/movil.component';
     MatCheckboxModule,
     FormsModule,
     MatToolbarModule,
-    LyDialogModule,
-    LyGridModule,
-    LyButtonModule,
-    LyTypographyModule,
+    NgxPaginationModule,
 
     
     

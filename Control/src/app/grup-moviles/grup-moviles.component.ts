@@ -21,6 +21,8 @@ export class GrupMovilesComponent implements OnInit {
   formulario= new FormGroup({});
   @Input() grupId: number = 0;
   bandera=false;
+
+  public page:number = 0;
  
  ngOnInit(): void {
     this.servicio.get().subscribe((parametro)=>{this.array=parametro;this.actualizar();}) 
