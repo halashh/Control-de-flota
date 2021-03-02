@@ -23,7 +23,7 @@
           <td>{{element.grupFechaAlta}}</td>
           <td>
             <div style="text-align: right;">
-              <button mat-raised-button (click)="editar(element)"  title="editar" style="color:aliceblue; background-color:#66bb6a;"> 
+              <button mat-raised-button (click)="editar(element)"  title="editar" type="button" style="color:aliceblue; background-color:#66bb6a;"> 
                
                <span class="material-icons">
                 border_color
@@ -34,7 +34,7 @@
             
           
                 &nbsp;
-                <button mat-raised-button  (click)="borrar(element)"   style="color:aliceblue; background-color:#ff7043 ;">
+                <button mat-raised-button  (click)="borrar(element)" type="button"  style="color:aliceblue; background-color:#ff7043 ;">
                   
                 <span class="material-icons">
                     clear
@@ -43,7 +43,7 @@
                 </button>
           
                 &nbsp;
-                <button mat-raised-button (click)="crear()"  style="color:aliceblue; background-color:#ba68c8; text-align: center;">
+                <button mat-raised-button (click)="crear()" type="button" style="color:aliceblue; background-color:#ba68c8; text-align: center;">
                   
                   <span class="material-icons">
                     add_circle_outline
@@ -52,6 +52,7 @@
                  </button>
                 </div>
           </td>
+        
     </tr>
 </table>
 <pagination-controls  
@@ -62,6 +63,7 @@
 
 
 
+</div>
 
 
 
@@ -109,7 +111,6 @@
 
 
 
-</div>
 
 </body>
 

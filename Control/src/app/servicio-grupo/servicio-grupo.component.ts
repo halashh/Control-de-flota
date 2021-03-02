@@ -22,6 +22,7 @@ export class ServicioGrupoComponent implements OnInit {
 
   @Input() grupId: number = 0;
 
+  public page:number = 0;
 
   arrayGrupServ: GrupoServicio[] = [];
   grupServ = new GrupoServicio();
