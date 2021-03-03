@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServicioT } from '../ServicioGlobal/Servicio';
 import { Servicio } from '../servicios/Servicio';
@@ -18,7 +19,12 @@ import { GrupoServicioService } from './grupo-servicio.service';
 export class ServicioGrupoComponent implements OnInit {
  
  
-  
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.table.paginator = this.paginator;
+  }
 
   @Input() grupId: number = 0;
 

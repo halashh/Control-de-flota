@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { GrupService } from './grup.service';
@@ -6,6 +6,7 @@ import { Grupo } from './Grupo';
 import {MatDialog} from '@angular/material/dialog';
 import { ServicioT } from '../ServicioGlobal/Servicio';
 import { GrupoServicioService } from '../servicio-grupo/grupo-servicio.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -23,7 +24,13 @@ export class GrupMovilesComponent implements OnInit {
   bandera=false;
 
   public page:number = 0;
- 
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.table.paginator = this.paginator;
+  }
  ngOnInit(): void {
     this.servicio.get().subscribe((parametro)=>{this.array=parametro;this.actualizar();}) 
     this.formulario=this.formBuilder.group({grupId:[''],grupNombre:['',Validators.required],grupDescripcion:['',Validators.required],grupFechaAlta:[''],grupBorrado:['']});

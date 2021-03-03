@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Tareas } from './tarea.service';
 import { Tarea } from './tareas';
@@ -11,8 +12,18 @@ import { Tarea } from './tareas';
 })
 export class TareasComponent implements OnInit {
 
-  emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.table.paginator = this.paginator;
+  }
+
+
+  emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  public page : number = 0 ;
   ngOnInit(): void {
     this.servicio.get().subscribe((parametro)=>{this.arreglo=parametro;this.actualizar();}) 
     this.formu=this.formBuilder.group({tareId:[''],tareNombre:['',[Validators.required]],tareDescripcion:['',Validators.required],tareUnidadMedida:['',Validators.required],tareCantidad:['',Validators.required],

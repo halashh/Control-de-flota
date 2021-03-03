@@ -27,7 +27,7 @@ import { ServicioTareaComponent } from './servicio-tarea/servicio-tarea.componen
 import { ServicioGrupoComponent } from './servicio-grupo/servicio-grupo.component';
 import { MovilComponent } from './movil/movil.component';
 import {NgxPaginationModule} from 'ngx-pagination'; 
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -68,7 +68,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     MatToolbarModule,
     NgxPaginationModule,
-
+    MatPaginatorModule,
+  
     
     
     

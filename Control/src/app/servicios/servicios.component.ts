@@ -21,7 +21,7 @@ export class ServiciosComponent implements OnInit {
     this.formu=this.formBuilder.group({servId:[''],servNombre:['',Validators.required],servDescripcion:['',Validators.required],servPeriodo:['',Validators.required],servKM:['',Validators.required],
     servFecha:['',Validators.required],servFechaAlta:[''],servBorrado:['']});
   }
-
+  public page : number = 0 ;
   columna: string[] = ['servId', 'servNombre', 'servDescripcion', 'servPeriodo', 'servKM', 'servFecha', 'servFechaAlta','Discontinued'];
   arreglo: Servicio[] = [];
   table = new MatTableDataSource <Servicio>();
