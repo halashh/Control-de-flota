@@ -157,6 +157,9 @@
             <label class="active" style="font-weight: bold" for="FechaAlta">Fecha de alta</label>
           </div>
         </div>
+        <div *ngIf="service && service.servId && bandera">
+          <app-servicio-tarea [servId]="service.servId"></app-servicio-tarea> 
+       </div>
         <a class="waves-effect waves-light btn" style="margin-top: 100px;"(click)="cancelar()" ><i class="material-icons right">cloud_off</i>Cancelar</a>
         &nbsp;
         &nbsp;
@@ -168,9 +171,6 @@
 
       
      
-      <div *ngIf="service && service.servId && bandera">
-        <app-servicio-tarea [servId]="service.servId"></app-servicio-tarea> 
-     </div>
     </div>
 
 

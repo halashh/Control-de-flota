@@ -46,6 +46,7 @@ include_once 'controllers/servicios.php';
 include_once 'controllers/tarea.php';
 include_once 'controllers/servicio-tarea.php';
 include_once 'controllers/grupo-servicio.php';
+include_once 'controllers/moviles.php';
 
 $app->get('/', function (Request $request, Response $response, $args) {
     $response->getBody()->write("API");

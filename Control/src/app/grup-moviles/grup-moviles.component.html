@@ -93,7 +93,9 @@
         <input type="text" id="FechaAlta" readonly="readonly" formControlName="grupFechaAlta"/>
         <label class="active" for="FechaAlta">Fecha de alta</label>
       </div>
-    
+      <div *ngIf="grupoServ && grupoServ.grupId && bandera">
+        <app-servicio-grupo [grupId]="grupoServ.grupId"></app-servicio-grupo> 
+      </div>
       <a class="waves-effect waves-light btn" style="margin-top: 100px;"(click)="cancelar()" ><i class="material-icons right">cloud_off</i>Cancelar</a>
       &nbsp;
       &nbsp;
@@ -104,11 +106,7 @@
     </div> 
   </div>  
   </form>
-  
-<div *ngIf="grupoServ && grupoServ.grupId && bandera">
-  <app-servicio-grupo [grupId]="grupoServ.grupId"></app-servicio-grupo> 
-</div>
-
+ 
 </div>
 
 
